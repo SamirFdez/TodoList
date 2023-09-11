@@ -1,13 +1,26 @@
 import React, { useState } from 'react'
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
-import './addTaskStyle.css'
-
 export const AddTask = () => {
 
     const [titleTask, setTitleTask] = useState ("")
     const [descriptiionTask, setDescriptionTask] = useState ("")
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+
+    const todoListArray = [
+        {
+            title: "title1",
+            description: "description",
+            isComplete: false,
+            id: 1
+        },
+        {
+            title: "title1",
+            description: "description",
+            isComplete: true,
+            id: 2
+        }
+    ]
 
     const noRechargePage = (e) => {
         e.preventDefault();
@@ -39,7 +52,7 @@ export const AddTask = () => {
 
   return (
     <>
-        <Form onSubmit={noRechargePage} className="shadow" style={{padding: "1em"}}>
+        <Form onSubmit={noRechargePage} className="shadow rounded" style={{padding: "1em"}}>
             <FloatingLabel
             controlId="floatingInput"
             label="Task title"
@@ -65,6 +78,7 @@ export const AddTask = () => {
 
             <Button 
                 variant="primary" 
+                size="lg"
                 type="submit"
                 disabled={isButtonDisabled}
                 onClick={clearTask}>

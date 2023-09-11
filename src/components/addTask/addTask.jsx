@@ -7,20 +7,22 @@ export const AddTask = () => {
     const [descriptiionTask, setDescriptionTask] = useState ("")
     const [isButtonDisabled, setIsButtonDisabled] = useState(true)
 
-    const todoListArray = [
-        {
-            title: "title1",
-            description: "description",
-            isComplete: false,
-            id: 1
-        },
-        {
-            title: "title1",
-            description: "description",
-            isComplete: true,
-            id: 2
-        }
-    ]
+    const [todoListArray, setTodoListArray] = useState([
+            {
+                title: "title1",
+                description: "description",
+                isComplete: false,
+                id: 1
+            },
+            {
+                title: "title1",
+                description: "description",
+                isComplete: true,
+                id: 2
+            }
+    ])
+
+    const [data, setData] = useState({ titleTask, descriptiionTask})
 
     const noRechargePage = (e) => {
         e.preventDefault();
@@ -81,7 +83,7 @@ export const AddTask = () => {
                 size="lg"
                 type="submit"
                 disabled={isButtonDisabled}
-                onClick={clearTask}>
+                onClick={""}>
                 Add task
             </Button>
         </Form>

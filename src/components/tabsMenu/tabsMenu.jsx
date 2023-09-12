@@ -1,28 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Container, Tabs, Tab } from 'react-bootstrap';
-
-import { AddTask } from '../addTask/addTask';
-import { AllTasks } from '../AllTasks/AllTasks';
+import { TaskManagement } from '../taskManagement/taskManagement';
+import { PendingTask } from '../pendingTask/pendingTask';
 
 export const TabsMenu = () => {
+
+
   return (
     <>
       <Container className="mt-5" >
         <h1 className="mb-5" style={{textAlign: "center"}}>Todo List</h1>
             <Tabs
-                defaultActiveKey="All"
-                id="justify-tab-example"
+                defaultActiveKey="Management"
                 justify>
 
-            <Tab eventKey="All" title="All">
-                <AddTask/>
-                <AllTasks/>
+          {/* TASK MANAGEMENT */}
+            <Tab eventKey="Management" title="Management">
+              <TaskManagement/>
             </Tab>
 
-            <Tab eventKey="Active" title="Active">
-                
+          {/* PENDING TASKS */}
+            <Tab eventKey="Pending" title="Pending">
+                <PendingTask/>
             </Tab>
 
+          {/* COMPLETED TASKS */}
             <Tab eventKey="Completed" title="Completed">
                 
             </Tab>

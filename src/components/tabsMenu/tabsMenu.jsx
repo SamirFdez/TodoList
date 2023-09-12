@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Tabs, Tab } from 'react-bootstrap';
 import { TaskManagement } from '../taskManagement/taskManagement';
 import { PendingTask } from '../pendingTask/pendingTask';
+import { CompletedTask } from '../completedTask/completedTask';
 
 export const TabsMenu = () => {
 
@@ -26,7 +27,7 @@ export const TabsMenu = () => {
 
           {/* COMPLETED TASKS */}
             <Tab eventKey="Completed" title="Completed">
-                
+                <CompletedTask/>
             </Tab>
 
           </Tabs>

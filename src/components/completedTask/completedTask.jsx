@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Badge } from 'react-bootstrap';
 
-export const PendingTask = () => {
+export const CompletedTask = () => {
 
-    const [pendingTask, setPendingTask] = useState([]);
+    const [completedTask, setCompletedTask] = useState([]);
 
     useEffect(() => {
         const data = localStorage.getItem('tasks')
-        if (data !== null) setPendingTask(JSON.parse(data))
+        if (data !== null) setCompletedTask(JSON.parse(data))
       }, [])
 
   return (
     <>
-        <div className="shadow mt-5 rounded" style={{padding: "1em"}}>
+        <div className="shadow mt-3 rounded" style={{padding: "1em"}}>
             <ListGroup variant="flush">
                 <ListGroup.Item> 
-                    <h5> List of all my pending tasks </h5>
+                    <h5> List of all my completed tasks </h5>
                 </ListGroup.Item>
             </ListGroup>
 
             <ListGroup>
 
                  {
-                    pendingTask.filter(task => !task.isComplete).length > 0 ? 
+                    completedTask.filter(task => task.isComplete).length > 0 ? 
                         (
                             <>
-                            {pendingTask.filter(task => !task.isComplete).map((task, index) =>
+                            {completedTask.filter(task => task.isComplete).map((task, index) =>
                                 <ListGroup.Item
                                     as="li"
                                     className="d-flex justify-content-between align-items-start align-middle"
@@ -36,10 +36,13 @@ export const PendingTask = () => {
                                         <div className={`fw-bold ${task.isComplete ? 'text-decoration-line-through' : ''}`}> {task.title} </div>
                                         <div className={`text-muted ${task.isComplete ? 'text-decoration-line-through' : ''}`}> {task.description} </div> 
                                     </div>
+                                    <Badge className="my-3" style={{marginRight: "1em"}} bg="success" pill>
+                                        completed
+                                    </Badge>
                                 </ListGroup.Item>
                             )}
                                 <ListGroup.Item className="fw-light font-monospace"> 
-                                    Total pending tasks: {pendingTask.filter(task => !task.isComplete).length}
+                                    Total pending tasks: {completedTask.filter(task => task.isComplete).length}
                                 </ListGroup.Item>
                             </>
                         ) : (
@@ -48,7 +51,7 @@ export const PendingTask = () => {
                                 className="d-flex justify-content-between align-items-start align-middle">
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold"> 
-                                        Congratulations! you don't have pending tasks
+                                        You don't have completed tasks
                                     </div>
                                 </div>
                             </ListGroup.Item>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button, FloatingLabel, ListGroup, Badge } from 'react-bootstrap';
 import { FaPen, FaTrashCan } from "react-icons/fa6";
+import Swal from 'sweetalert2';
 
 export const TaskManagement = () => {
 
     const [todoList, setTodoList] = useState([])
     const [formData, setFormData] = useState({ title: '', description: ''})
+    const [editData, setEditData] = useState(null)
   
     useEffect(() => {
         const data = localStorage.getItem('tasks')
@@ -16,28 +18,70 @@ export const TaskManagement = () => {
     const handleChange = ({target}) => {
         setFormData({... formData, [target.name]: target.value})
     }
-  
+
+    // Funcion para guardar una tarea editada o para agregar tarea nueva  
     const addTask = (e) => {
         e.preventDefault();
-        if (formData.title !== "" && formData.description !== "") {
-            const todo = formData
-            todo.isComplete = true
-            todo.id = Date.now()
-  
-            const updatedTodoList = [...todoList, todo];
-            setTodoList(updatedTodoList);      
+        if (editData !== null) {
+            const updatedTodoList = [...todoList]
+            const task = updatedTodoList.find((task) => task.id === editData)
+
+            task.title = formData.title
+            task.description = formData.description
+
+            setTodoList(updatedTodoList)
+            setEditData(null)
+
             localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
-            
-            setFormData({ title: '', description: '' });
+            setFormData({ title: '', description: '' })
+
+        } else {
+            if (formData.title !== "" && formData.description !== "") {
+                const task = formData
+                task.isComplete = false
+                task.id = Date.now()
+      
+                const updatedTodoList = [...todoList, task];
+                setTodoList(updatedTodoList);      
+                localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
+                
+                setFormData({ title: '', description: '' });
+            }
         }
     }
 
-    const deleteTask = (id) => {
-        const updatedTodoList = todoList.filter(task => task.id !== id)
-        setTodoList(updatedTodoList)
-        localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
+    // funcion para editar, envia los datos a los inputs
+    const editTask = (id) => {
+        const updatedTodoList = [...todoList]
+        const task = updatedTodoList.find((task) => task.id === id)
+        setFormData({title: task.title, description: task.description})
+        setEditData(id)
     }
 
+    // funcion para eliminar una tarea 
+    const deleteTask = (id) => {
+        Swal.fire({
+            title: 'Seguro que quieres eliminar esta tarea?',
+            icon: 'warning',
+            showCancelButton: ["Cancelar", true],
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Si, eliminar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const updatedTodoList = todoList.filter(task => task.id !== id)
+                setTodoList(updatedTodoList)
+                localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
+                Swal.fire({
+                    icon: 'success',
+                    text: `La tarea se ha eliminado con éxito`,
+                    timer: 1500
+                  })
+            }
+        })
+    }
+
+    // funcion para cambiar el estado de una tarea (completa o no completada)
     const checkTask = (id) => {
         const updatedTodoList = [...todoList]
         const task = updatedTodoList.find((task) => task.id === id)
@@ -46,10 +90,27 @@ export const TaskManagement = () => {
         localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
       }
     
+    //   funcion para borrar toas las tareas completadas
     const deleteCompletedTasks = () => {
-        const updatedTodoList = todoList.filter(task => task.isComplete === false)
-        setTodoList(updatedTodoList)
-        localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
+        Swal.fire({
+            title: 'Quieres eliminar todas las tareas completadas?',
+            icon: 'warning',
+            showCancelButton: ["Cancelar", true],
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Si, eliminar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const updatedTodoList = todoList.filter(task => task.isComplete === false)
+                setTodoList(updatedTodoList)
+                localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
+                Swal.fire({
+                    icon: 'success',
+                    text: `todas las tareas se han eliminado con éxito`,
+                    timer: 1500
+                  })
+            }
+        })
     }
 
     const completeTasks = todoList.filter(taskComplete => taskComplete.isComplete === true).length
@@ -94,13 +155,18 @@ export const TaskManagement = () => {
             <ListGroup variant="flush">
                 <ListGroup.Item className="d-flex align-items-center justify-content-between"> 
                     <h5> List of all my tasks </h5>
-                    <Button 
-                        className="my-2" 
-                        variant="secondary" 
-                        size="sm"
-                        onClick={deleteCompletedTasks}>
-                        Delete completed tasks
-                    </Button>
+                    {
+                        todoList.filter(task => task.isComplete).length > 0 ?
+                            (
+                                <Button 
+                                    className="my-2" 
+                                    variant="primary" 
+                                    size="sm"
+                                    onClick={deleteCompletedTasks}>
+                                    Delete completed tasks
+                                </Button>
+                            ) : null
+                    }
                 </ListGroup.Item>
             </ListGroup>
 
@@ -131,7 +197,8 @@ export const TaskManagement = () => {
                         className="my-2" 
                         variant="warning" 
                         size="sm" 
-                        style={{marginRight: "0.5em"}}>
+                        style={{marginRight: "0.5em"}}
+                        onClick={() => editTask(task.id)}>
                         <FaPen/>
                     </Button>
                     
@@ -144,11 +211,18 @@ export const TaskManagement = () => {
                     </Button>
                 </ListGroup.Item>
                 )}
-                <ListGroup.Item className="fw-light font-monospace"> 
-                    total tasks: <span>{todoList.length} - </span>
-                    pending tasks: <span style={{color: "#dc3545"}}>{pendingTasks}</span> - 
-                    completed tasks: <span style={{color: "#0d6efd"}}>{completeTasks}</span>.
-                </ListGroup.Item>
+                
+                {
+                    todoList.length > 0 ?
+                        (   
+                            <ListGroup.Item className="fw-light font-monospace"> 
+                                total tasks: <span>{todoList.length} - </span>
+                                pending tasks: <span style={{color: "#dc3545"}}>{pendingTasks}</span> - 
+                                completed tasks: <span style={{color: "#0d6efd"}}>{completeTasks}</span>.
+                           
+                            </ListGroup.Item> 
+                        ) : null
+                }
             </ListGroup>
         </div>
     </>

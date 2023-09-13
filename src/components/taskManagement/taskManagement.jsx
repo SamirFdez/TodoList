@@ -187,7 +187,7 @@ export const TaskManagement = () => {
                     {
                         task.isComplete ? 
                             (
-                                <Badge className="my-3" style={{marginRight: "1em"}} bg="success" pill>
+                                <Badge style={{marginRight: "0.5em", padding: "0.5em", marginTop: "0.9em"}} bg="success" pill>
                                     completed
                                 </Badge>
                             ) : null

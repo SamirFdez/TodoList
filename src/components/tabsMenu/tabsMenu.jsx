@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Tabs, Tab } from 'react-bootstrap';
 import { TaskManagement } from '../taskManagement/taskManagement';
 import { PendingTask } from '../pendingTask/pendingTask';
 import { CompletedTask } from '../completedTask/completedTask';
 
 export const TabsMenu = () => {
-
 
   return (
     <>

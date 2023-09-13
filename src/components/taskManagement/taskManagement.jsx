@@ -19,7 +19,7 @@ export const TaskManagement = () => {
         setFormData({... formData, [target.name]: target.value})
     }
 
-    // Funcion para guardar una tarea editada o para agregar tarea nueva  
+    // Function to save an edited task or to add a new task
     const addTask = (e) => {
         e.preventDefault();
         if (editData !== null) {
@@ -50,7 +50,7 @@ export const TaskManagement = () => {
         }
     }
 
-    // funcion para editar, envia los datos a los inputs
+    // Edit function, sends the data to the inputs
     const editTask = (id) => {
         const updatedTodoList = [...todoList]
         const task = updatedTodoList.find((task) => task.id === id)
@@ -58,15 +58,15 @@ export const TaskManagement = () => {
         setEditData(id)
     }
 
-    // funcion para eliminar una tarea 
+    // Function to delete a task
     const deleteTask = (id) => {
         Swal.fire({
-            title: 'Seguro que quieres eliminar esta tarea?',
+            title: 'Do you want to delete this task?',
             icon: 'warning',
-            showCancelButton: ["Cancelar", true],
+            showCancelButton: ["Cancel", true],
             confirmButtonColor: '#d33',
             cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Si, eliminar'
+            confirmButtonText: 'Yes, delete'
           }).then((result) => {
             if (result.isConfirmed) {
                 const updatedTodoList = todoList.filter(task => task.id !== id)
@@ -74,14 +74,14 @@ export const TaskManagement = () => {
                 localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
                 Swal.fire({
                     icon: 'success',
-                    text: `La tarea se ha eliminado con éxito`,
+                    text: `The task has been successfully deleted`,
                     timer: 1500
                   })
             }
         })
     }
 
-    // funcion para cambiar el estado de una tarea (completa o no completada)
+    // Function to change the status of a task (from not completed to completed)
     const checkTask = (id) => {
         const updatedTodoList = [...todoList]
         const task = updatedTodoList.find((task) => task.id === id)
@@ -90,15 +90,15 @@ export const TaskManagement = () => {
         localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
       }
     
-    //   funcion para borrar toas las tareas completadas
+    //   Function to delete all completed tasks
     const deleteCompletedTasks = () => {
         Swal.fire({
-            title: 'Quieres eliminar todas las tareas completadas?',
+            title: 'Do you want to delete all completed tasks?',
             icon: 'warning',
-            showCancelButton: ["Cancelar", true],
+            showCancelButton: ["Cancel", true],
             confirmButtonColor: '#d33',
             cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Si, eliminar'
+            confirmButtonText: 'Yes, delete'
           }).then((result) => {
             if (result.isConfirmed) {
                 const updatedTodoList = todoList.filter(task => task.isComplete === false)
@@ -106,7 +106,7 @@ export const TaskManagement = () => {
                 localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
                 Swal.fire({
                     icon: 'success',
-                    text: `todas las tareas se han eliminado con éxito`,
+                    text: `All completed tasks have been successfully deleted`,
                     timer: 1500
                   })
             }

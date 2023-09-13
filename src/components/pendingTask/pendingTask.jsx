@@ -17,11 +17,8 @@ export const PendingTask = () => {
                 <ListGroup.Item> 
                     <h5> List of all my pending tasks </h5>
                 </ListGroup.Item>
-            </ListGroup>
 
-            <ListGroup>
-
-                 {
+                {
                     pendingTask.filter(task => !task.isComplete).length > 0 ? 
                         (
                             <>

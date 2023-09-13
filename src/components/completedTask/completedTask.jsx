@@ -17,11 +17,8 @@ export const CompletedTask = () => {
                 <ListGroup.Item> 
                     <h5> List of all my completed tasks </h5>
                 </ListGroup.Item>
-            </ListGroup>
 
-            <ListGroup>
-
-                 {
+                {
                     completedTask.filter(task => task.isComplete).length > 0 ? 
                         (
                             <>

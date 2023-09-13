@@ -168,9 +168,6 @@ export const TaskManagement = () => {
                             ) : null
                     }
                 </ListGroup.Item>
-            </ListGroup>
-
-            <ListGroup>
 
                 {todoList.map(task => 
                 <ListGroup.Item

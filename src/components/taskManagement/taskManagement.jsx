@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, FloatingLabel, ListGroup, Badge } from 'react-bootstrap';
+import { Form, Button, FloatingLabel, ListGroup, Badge, Card } from 'react-bootstrap';
 import { FaPen, FaTrashCan } from "react-icons/fa6";
 import Swal from 'sweetalert2';
 
@@ -101,7 +101,7 @@ export const TaskManagement = () => {
             confirmButtonText: 'Yes, delete'
           }).then((result) => {
             if (result.isConfirmed) {
-                const updatedTodoList = todoList.filter(task => task.isComplete === false)
+                const updatedTodoList = todoList.filter(task => !task.isComplete)
                 setTodoList(updatedTodoList)
                 localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
                 Swal.fire({
@@ -170,6 +170,20 @@ export const TaskManagement = () => {
                 </ListGroup.Item>
             </ListGroup>
 
+            <Card>
+                <Card.Header>Featured</Card.Header>
+                <Card.Body className="d-flex justify-content-between align-items-start align-middle">
+                <input className="form-check-input mx-2 my-3" type="checkbox"/>
+                <div className="ms-2 me-auto">
+                    <Card.Title>Special title treatment</Card.Title>
+                    <Card.Text>
+                    With supporting text below as a natural lead-in to additional content.
+                    </Card.Text>
+                    </div>
+                </Card.Body>
+            </Card>
+    
+
             <ListGroup>
 
                 {todoList.map(task => 
@@ -213,14 +227,17 @@ export const TaskManagement = () => {
                 )}
                 
                 {
-                    todoList.length > 0 ?
+                    todoList.length === 0 ?
                         (   
-                            <ListGroup.Item className="fw-light font-monospace"> 
-                                total tasks: <span>{todoList.length} - </span>
-                                pending tasks: <span style={{color: "#dc3545"}}>{pendingTasks}</span> - 
-                                completed tasks: <span style={{color: "#0d6efd"}}>{completeTasks}</span>.
+                            <Card>
+                            <Card.Body>This is some text within a card body.</Card.Body>
+                          </Card>
+                            // <ListGroup.Item className="fw-light font-monospace"> 
+                            //     total tasks: <span>{todoList.length} - </span>
+                            //     pending tasks: <span style={{color: "#dc3545"}}>{pendingTasks}</span> - 
+                            //     completed tasks: <span style={{color: "#0d6efd"}}>{completeTasks}</span>.
                            
-                            </ListGroup.Item> 
+                            // </ListGroup.Item> 
                         ) : null
                 }
             </ListGroup>

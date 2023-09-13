@@ -33,7 +33,7 @@ export const CompletedTask = () => {
                                         <div className={`fw-bold ${task.isComplete ? 'text-decoration-line-through' : ''}`}> {task.title} </div>
                                         <div className={`text-muted ${task.isComplete ? 'text-decoration-line-through' : ''}`}> {task.description} </div> 
                                     </div>
-                                    <Badge className="my-3" style={{marginRight: "0em"}} bg="success" pill>
+                                    <Badge className="my-3" style={{marginRight: "0em", padding: "0.5em"}} bg="success" pill>
                                         completed
                                     </Badge>
                                 </ListGroup.Item>

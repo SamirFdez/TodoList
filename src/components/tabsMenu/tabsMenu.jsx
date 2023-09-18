@@ -6,27 +6,34 @@ import { CompletedTask } from '../completedTask/completedTask';
 
 export const TabsMenu = () => {
 
+  const [todoList, setTodoList] = useState([])
+
+  useEffect(() => {
+    const data = localStorage.getItem('tasks')
+    if (data !== null) setTodoList(JSON.parse(data))
+  }, [])
+
   return (
     <>
-      <Container className="mt-5" >
-        <h1 className="mb-5" style={{textAlign: "center"}}>Todo List</h1>
+      <Container>
+        <h1 className="mt-4 mb-4" style={{textAlign: "center"}}>Todo List</h1>
             <Tabs
                 defaultActiveKey="Management"
                 justify>
 
           {/* TASK MANAGEMENT */}
             <Tab eventKey="Management" title="Management">
-              <TaskManagement/>
+              <TaskManagement todoList={todoList} setTodoList={setTodoList}/>
             </Tab>
 
           {/* PENDING TASKS */}
             <Tab eventKey="Pending" title="Pending">
-                <PendingTask/>
+                <PendingTask todoList={todoList}/>
             </Tab>
 
           {/* COMPLETED TASKS */}
             <Tab eventKey="Completed" title="Completed">
-                <CompletedTask/>
+                <CompletedTask todoList={todoList}/>
             </Tab>
 
           </Tabs>

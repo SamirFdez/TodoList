@@ -3,17 +3,11 @@ import { Form, Button, FloatingLabel, ListGroup, Badge } from 'react-bootstrap';
 import { FaPen, FaTrashCan } from "react-icons/fa6";
 import Swal from 'sweetalert2';
 
-export const TaskManagement = () => {
+export const TaskManagement = ({todoList, setTodoList}) => {
 
-    const [todoList, setTodoList] = useState([])
     const [formData, setFormData] = useState({ title: '', description: ''})
     const [editData, setEditData] = useState(null)
   
-    useEffect(() => {
-        const data = localStorage.getItem('tasks')
-        if (data !== null) setTodoList(JSON.parse(data))
-      }, [])
-    
   
     const handleChange = ({target}) => {
         setFormData({... formData, [target.name]: target.value})

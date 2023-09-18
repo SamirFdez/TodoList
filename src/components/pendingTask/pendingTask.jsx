@@ -1,14 +1,6 @@
-import React, { useState, useEffect } from 'react'
 import { ListGroup } from 'react-bootstrap';
 
-export const PendingTask = () => {
-
-    const [pendingTask, setPendingTask] = useState([]);
-
-    useEffect(() => {
-        const data = localStorage.getItem('tasks')
-        if (data !== null) setPendingTask(JSON.parse(data))
-      }, [])
+export const PendingTask = ({todoList}) => {
 
   return (
     <>
@@ -19,10 +11,10 @@ export const PendingTask = () => {
                 </ListGroup.Item>
 
                 {
-                    pendingTask.filter(task => !task.isComplete).length > 0 ? 
+                    todoList.filter(task => !task.isComplete).length > 0 ? 
                         (
                             <>
-                            {pendingTask.filter(task => !task.isComplete).map((task, index) =>
+                            {todoList.filter(task => !task.isComplete).map((task, index) =>
                                 <ListGroup.Item
                                     as="li"
                                     className="d-flex justify-content-between align-items-start align-middle"
@@ -36,7 +28,7 @@ export const PendingTask = () => {
                                 </ListGroup.Item>
                             )}
                                 <ListGroup.Item className="fw-light font-monospace"> 
-                                    Total pending tasks: {pendingTask.filter(task => !task.isComplete).length}
+                                    Total pending tasks: {todoList.filter(task => !task.isComplete).length}
                                 </ListGroup.Item>
                             </>
                         ) : (

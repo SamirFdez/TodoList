@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ListGroup, Badge } from 'react-bootstrap';
 
-export const CompletedTask = () => {
-
-    const [completedTask, setCompletedTask] = useState([]);
-
-    useEffect(() => {
-        const data = localStorage.getItem('tasks')
-        if (data !== null) setCompletedTask(JSON.parse(data))
-      }, [])
+export const CompletedTask = ({todoList}) => {
 
   return (
     <>
@@ -19,10 +12,10 @@ export const CompletedTask = () => {
                 </ListGroup.Item>
 
                 {
-                    completedTask.filter(task => task.isComplete).length > 0 ? 
+                    todoList.filter(task => task.isComplete).length > 0 ? 
                         (
                             <>
-                            {completedTask.filter(task => task.isComplete).map((task, index) =>
+                            {todoList.filter(task => task.isComplete).map((task, index) =>
                                 <ListGroup.Item
                                     as="li"
                                     className="d-flex justify-content-between align-items-start align-middle"
@@ -39,7 +32,7 @@ export const CompletedTask = () => {
                                 </ListGroup.Item>
                             )}
                                 <ListGroup.Item className="fw-light font-monospace"> 
-                                    Total completed tasks: {completedTask.filter(task => task.isComplete).length}
+                                    Total completed tasks: {todoList.filter(task => task.isComplete).length}
                                 </ListGroup.Item>
                             </>
                         ) : (

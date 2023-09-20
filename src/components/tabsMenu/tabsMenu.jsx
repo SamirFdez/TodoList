@@ -1,52 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Tabs, Tab, Row, Col } from 'react-bootstrap';
-import { User } from '../user/user';
 import { TaskManagement } from '../taskManagement/taskManagement';
 import { PendingTask } from '../pendingTask/pendingTask';
 import { CompletedTask } from '../completedTask/completedTask';
+import Swal from 'sweetalert2';
 
 export const TabsMenu = () => {
 
   const [todoList, setTodoList] = useState([])
-  const [username, setUsername] = useState()
+  const [user, setUser] = useState()
 
-  const user = `${username?.charAt(0).toUpperCase() + username?.slice(1)}'s Todo List`
+  const username = `${user?.charAt(0).toUpperCase() + user?.slice(1)}'s` + "Todo List"
 
   useEffect(() => {
     const data = localStorage.getItem('tasks')
     if (data !== null) setTodoList(JSON.parse(data))
 
-  }, [])
+    const username = localStorage.getItem('usermame');
 
-  useEffect(() => {
+    if(username === null){
+      Swal.fire({
+        icon: 'question',
+        title: "What's your name?",
+        input: 'text',
+        inputLabel: "This information is for better usability",
+        inputPlaceholder: 'Enter your first name',
+        showCancelButton: true        
+      }).then((result) => {
+        if (result.value) {
+          localStorage.setItem('username', result.value);
+          setUser(value)
+        }
+      });
 
-    const intervalId = setInterval(() => {
-      const getUsername = localStorage.getItem('username');
+    } else {
+      setUser(username)
 
-      if (getUsername !== null) {
-        setUsername(getUsername);
-      } else {
-        setUsername("Todo List")
-      }
-    }, 1);
+    }
 
-    return () => {
-      clearInterval(intervalId); 
-    };
   }, [])
 
   return (
     <>
-      <User/>
       <Container>
         <Row className="mt-4 mb-4">
           <Col>
-            <h1> {username !== "Todo List" ? user : username} </h1>
-            {/* {
-              username !== null ? 
-                <h1> { `${username?.charAt(0).toUpperCase() + username?.slice(1)}'s Todo List` } </h1>
-                : <h1> Todo List </h1>
-            } */}
+            <h1>
+              {
+                username === "NaN'sTodo List" ? "Todo List"
+                : username
+              }
+              {/* {`${user?.charAt(0).toUpperCase() + user?.slice(1)}'s Todo List`} */}
+            </h1>
           </Col>
           <Col></Col>
         </Row>

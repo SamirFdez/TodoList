@@ -30,7 +30,13 @@ export const TaskManagement = ({todoList, setTodoList}) => {
             setFormData({ title: '', description: '' })
 
         } else {
-            if (formData.title !== "" && formData.description !== "") {
+            if (formData.title === "" && formData.description === ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: `Complete all fields to add the task`,
+                    timer: 3000
+                })
+            } else {
                 const task = formData
                 task.isComplete = false
                 task.id = Date.now()

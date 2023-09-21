@@ -1,17 +1,10 @@
 import React from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { FaGithub, FaInstagram } from "react-icons/fa6";
 
 export const Footer = () => {
 
-    const numero = 10
 
-    const holaMundo = () => {
-        if(numero === 1) {
-            console.log("holaMundo")
-        }
-
-    }
 
   return (
     <>  
@@ -36,8 +29,6 @@ export const Footer = () => {
                         </a>
                     </Col>
                 </Row>
-
-
 
             </Container>
         </section>

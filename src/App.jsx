@@ -1,4 +1,5 @@
 import './App.css'
+import { Footer } from './components/footer/footer'
 import { TabsMenu } from './components/tabsMenu/tabsMenu'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <TabsMenu/>
+      <Footer/>
     </>
   )
 }

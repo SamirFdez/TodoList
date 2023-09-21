@@ -5,6 +5,20 @@ body {
     background-color: #f5f5f5!important;
   }
 
+  .App{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .footer {
+    margin-top: auto;
+    color: #000000;
+    justify-content: center;
+
+  }
+
   .textFooter {
     color: #000000;
     font-weight: 500;

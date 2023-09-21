@@ -1,13 +1,15 @@
 import './App.css'
-import { Footer } from './components/footer/footer'
 import { TabsMenu } from './components/tabsMenu/tabsMenu'
+import { Footer } from './components/footer/footer'
 
 function App() {
 
   return (
     <>
-      <TabsMenu/>
-      <Footer/>
+      <div className="App">
+        <TabsMenu/>
+        <Footer/>
+      </div>
     </>
   )
 }

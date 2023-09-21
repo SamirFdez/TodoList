@@ -186,7 +186,7 @@ export const TaskManagement = ({todoList, setTodoList}) => {
                         {
                         task.isComplete ? 
                             (
-                                <Badge style={{marginRight: "0.5em", padding: "0.5em"}} bg="success" pill>
+                                <Badge style={{padding: "0.5em"}} bg="success" pill>
                                     completed
                                 </Badge>
                             ) : null
@@ -229,3 +229,4 @@ export const TaskManagement = ({todoList, setTodoList}) => {
     </>
   )
 }
+

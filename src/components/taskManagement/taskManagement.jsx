@@ -123,7 +123,7 @@ export const TaskManagement = ({todoList, setTodoList}) => {
         />
 
         {
-            todoList > 0 ? 
+            todoList.length > 0 ? 
                 <TaskManagementTable 
                     todoList={todoList} 
                     deleteCompletedTasks={deleteCompletedTasks} 

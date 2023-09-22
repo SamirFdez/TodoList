@@ -29,6 +29,11 @@ export const TaskManagement = ({todoList, setTodoList}) => {
 
             localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
             setFormData({ title: '', description: '' })
+            Swal.fire({
+                icon: 'success',
+                text: 'The task has been edited successfully.',
+                timer: 1500
+              })
 
         } else {
             if (formData.title === "" || formData.description === ""){
@@ -41,12 +46,16 @@ export const TaskManagement = ({todoList, setTodoList}) => {
                 const task = formData
                 task.isComplete = false
                 task.id = Date.now()
-      
                 const updatedTodoList = [...todoList, task];
-                setTodoList(updatedTodoList);      
+                setTodoList(updatedTodoList);  
+                    
                 localStorage.setItem('tasks', JSON.stringify(updatedTodoList));
-                
                 setFormData({ title: '', description: '' });
+                Swal.fire({
+                    icon: 'success',
+                    text: 'The task has been added successfully.',
+                    timer: 1500
+                  })
             }
         }
     }

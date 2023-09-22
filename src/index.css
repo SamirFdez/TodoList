@@ -11,21 +11,23 @@ body {
     flex-direction: column;
   }
   
-
   .footer {
     margin-top: auto;
     color: #000000;
     justify-content: center;
-
   }
 
   .textFooter {
     color: #000000;
-    font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
   }
 
-.iconFooter {
-  color: #000000;
-  font-size: 20px;
-}
+  .iconFooter {
+    width: 1.2em;
+  }
+
+  @media screen and (max-width: 768px) {
+    .footer {
+      justify-content: center;
+    }
+  }

@@ -2,8 +2,6 @@ import React from 'react'
 import { Container } from 'react-bootstrap';
 import iconWeb  from '../../assets/images/iconWeb.png'
 import iconGithub from '../../assets/images/iconGithub.png'
-import iconInstagram  from '../../assets/images/iconInstagram.png'
-import iconEmail  from '../../assets/images/iconEmail.png'
 
 export const Footer = () => {
 
@@ -20,23 +18,13 @@ export const Footer = () => {
 
                     <ul className="nav col-12 justify-content-center list-unstyled d-flex">
                         <li className="ms-3">
-                            <a href="">
+                            <a href="https://portafolio-samirfdez.vercel.app/" target="_blank" rel="noopener noreferrer">
                                 <img src={iconWeb} className="iconFooter" />
                             </a>
                         </li>
                         <li className="ms-3">
                             <a href="https://github.com/SamirFdez" target="_blank" rel="noopener noreferrer">
                                 <img src={iconGithub} className="iconFooter" />
-                            </a>
-                        </li>
-                        <li className="ms-3">
-                            <a href="https://www.instagram.com/samirfdezx3/" target="_blank" rel="noopener noreferrer">
-                                <img src={iconInstagram} className="iconFooter" />
-                            </a>
-                        </li>
-                        <li className="ms-3">
-                            <a href="">
-                                <img src={iconEmail} className="iconFooter" />
                             </a>
                         </li>
                     </ul>

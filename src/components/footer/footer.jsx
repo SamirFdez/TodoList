@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap';
 import iconWeb  from '../../assets/images/iconWeb.png'
 import iconGithub from '../../assets/images/iconGithub.png'
+import linkedin from '../../assets/images/linkedin.png'
 
 export const Footer = () => {
 
@@ -25,6 +26,11 @@ export const Footer = () => {
                         <li className="ms-3">
                             <a href="https://github.com/SamirFdez" target="_blank" rel="noopener noreferrer">
                                 <img src={iconGithub} className="iconFooter" />
+                            </a>
+                        </li>
+                        <li className="ms-3">
+                            <a href="https://www.linkedin.com/in/samir-fern%C3%A1ndez-953222188/" target="_blank" rel="noopener noreferrer">
+                                <img src={linkedin} className="iconFooter" />
                             </a>
                         </li>
                     </ul>

@@ -19,7 +19,7 @@ export const Footer = () => {
 
                     <ul className="nav col-12 justify-content-center list-unstyled d-flex">
                         <li className="ms-3">
-                            <a href="https://portafolio-samirfdez.vercel.app/" target="_blank" rel="noopener noreferrer">
+                            <a href="http://portfolio-samirfdez.vercel.app/" target="_blank" rel="noopener noreferrer">
                                 <img src={iconWeb} className="iconFooter" />
                             </a>
                         </li>

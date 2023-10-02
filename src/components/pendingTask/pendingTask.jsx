@@ -4,7 +4,7 @@ export const PendingTask = ({todoList}) => {
 
   return (
     <>
-        <div className="shadow mt-5 rounded" style={{padding: "1em"}}>
+        <div className="shadow mt-3 rounded" style={{padding: "1em"}}>
             <ListGroup variant="flush">
                 <ListGroup.Item> 
                     <h5> List of all my pending tasks </h5>

@@ -8,7 +8,7 @@ export const Footer = () => {
 
   return (
     <>  
-        <section className="d-flex justify-content-between p-2 footer" style={{backgroundColor: "#60B7FF"}}>
+        <section className="d-flex justify-content-between p-2 footer">
             <Container>
                 <footer className="d-flex flex-wrap align-items-center py-1 my-1">
                     <div className="col-12 justify-content-center d-flex align-items-center">

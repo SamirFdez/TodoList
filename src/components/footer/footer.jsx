@@ -37,7 +37,7 @@ export const Footer = () => {
               </li>
               <li className="ms-3">
                 <a
-                  href="https://www.linkedin.com/in/samir-fern%C3%A1ndez-953222188/"
+                  href="https://www.linkedin.com/in/samirfdez/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

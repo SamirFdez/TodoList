@@ -12,7 +12,7 @@ export const Footer = () => {
           <footer className="d-flex flex-wrap align-items-center py-1 my-1">
             <div className="col-12 justify-content-center d-flex align-items-center">
               <span className="mb-3 mb-md-0 textFooter">
-                Designed & build by Samir Fernández
+                Designed & built by Samir Fernández
               </span>
             </div>
 

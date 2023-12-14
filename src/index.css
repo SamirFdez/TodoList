@@ -27,6 +27,10 @@ body {
     width: 1.2em;
   }
 
+  .iconFooter:hover {
+    transform: scale(1.1);
+  }
+
   @media screen and (max-width: 768px) {
     .footer {
       justify-content: center;

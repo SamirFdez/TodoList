@@ -16,7 +16,7 @@ export const TabsMenu = () => {
     <>
       <Container>
         <h1 className="mt-5 mb-4" style={{ textAlign: "center" }}>
-          Todo List
+          To do List
         </h1>
 
         <Tabs defaultActiveKey="Management" justify>
